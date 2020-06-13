@@ -1,7 +1,6 @@
---[[
 BSD 2-Clause License
 
-Copyright (c) 2020, Anthony Anderson
+Copyright (c) [year], [fullname]
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -24,37 +23,3 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
---]]
-
-local colors = {'red', 'green', 'blue', 'yellow'}
-
--- pulls random element from color array
-function getRandomColor()
-    math.random();
-    math.random();
-    math.random();
-    math.random();
-    math.random();
-    math.random();
-    math.random();
-    return colors[math.random(#colors)]
-end
-
-
-function msword(keyboard)
-
-
-    keyboard.M = tocolor('red')
-    keyboard.S = tocolor('red')
-    keyboard.W = tocolor('red')
-    keyboard.O = tocolor('red')
-    keyboard.R = tocolor('red')
-    keyboard.D = tocolor('red')
-end
-
-buffer = RemderTarget:new()
-thread(msword, buffer)
-
-function render(ms, target)
-    target:blend(buffer)
-end
