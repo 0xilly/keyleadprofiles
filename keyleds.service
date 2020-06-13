@@ -1,0 +1,8 @@
+[Unit]
+Description=Keyleadss deamon
+
+[Service]
+ExecStart=/usr/bin/keyledsd
+
+[Install]
+WantedBy=default.target
