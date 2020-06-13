@@ -26,18 +26,38 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --]]
 
-function wasd(keyboard)
-    keyboard.W = tocolor('orange')
-    wait(1)
-    keyboard.S = tocolor('orange')
-    wait(1)
-    keyboard.A = tocolor('orange')
-    wait(1)
-    keyboard.D = tocolor('orange')
+-- table of colors
+
+function keyfill(keyboard)
+    
+    local color = tocolor(keyleds.config.color) or tocolor('yellow')
+    local keyz
+    if keyleds.config.keys then
+        keyz = keyleds.config.keys
+    else
+        keyz = {}
+        for k, v in pairs(keyleds.config) do
+            if string.sub(k, 1, 4) == "keys" then keyz[#keyz + 1] = v end
+        end
+    end
+
+
+    for i=0, #keyz do
+        keyboard[keyz[i]] = color
+        print(keyz[i])
+    end
+
+    -- duration = (tonumber(keyleds.config.duration) or 3)
+    -- color = tocolor(keyleds.config.color) or tocolor('yellow')
+    -- keys = {'W', 'S', 'A', 'D' , 'UP', 'DOWN', 'RIGHT', 'LEFT'}
+
+    -- for i=1, #keys do 
+        -- keyboard[keys[i]] = color
+    -- end
 end
 
 buffer = RenderTarget:new()
-thread(wasd, buffer)
+thread(keyfill, buffer)
 
 function render(ms, target)
     target:blend(buffer)
